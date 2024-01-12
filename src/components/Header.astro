@@ -1,0 +1,53 @@
+---
+import ContactLinks from "./ContactLinks.astro";
+---
+
+<header>
+  <img src="/img/profile.webp" alt="Leandro" width="140" height="140" />
+  <div class="info-container">
+    <h1>Hola, soy Leandro</h1>
+    <p><span class="text-accent">Desarrollador web</span> de Uruguay desde hace más de 2 años</p>
+    <p>Me gusta estar constantemente aprendiendo y enfrentarme a nuevos desafíos</p>
+    <ContactLinks />
+  </div>
+</header>
+
+<style>
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 1rem;
+
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+
+    & img {
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+    }
+
+    & p {
+      margin-bottom: 0;
+      text-wrap: pretty;
+    }
+
+    & p:not(:last-child) {
+      margin-bottom: 0.5em;
+    }
+
+    & .info-container {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    header {
+      flex-direction: row;
+      align-items: center;
+      gap: 2rem;
+    }
+  }
+</style>

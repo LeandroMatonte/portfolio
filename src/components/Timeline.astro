@@ -1,0 +1,33 @@
+---
+interface Props {
+  title: string;
+  list: Array<{
+    title: string;
+    description: string;
+    date?: string;
+  }>;
+}
+
+const { title, list } = Astro.props;
+
+import TimelineItem from "./TimelineItem.astro";
+---
+
+<article>
+  <h1>{title}</h1>
+  <ul class="timeline">
+    {list.map((listItem) => <TimelineItem item={listItem} />)}
+  </ul>
+</article>
+<style>
+  article:not(:last-child) {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+</style>

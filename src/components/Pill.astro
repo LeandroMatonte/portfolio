@@ -1,0 +1,46 @@
+---
+interface Props {
+  url: string;
+  label: string;
+  showLabel: boolean;
+}
+
+const { url, label, showLabel } = Astro.props;
+---
+
+<a class="pill" href={url} target="_blank" aria-label={label}>
+  <slot name="pill-icon" />
+  {showLabel ? <label>{label}</label> : null}
+</a>
+
+<style>
+  .pill {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    font-size: 22px;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    background-color: var(--color-accent);
+    color: var(--white);
+    text-decoration: none;
+    border: 2px solid var(--color-accent);
+    transition: all 0.2s ease-in-out;
+
+    & label {
+      font-size: 16px;
+    }
+  }
+
+  .pill:hover {
+    background-color: var(--white);
+    color: var(--color-accent);
+  }
+
+  @media (min-width: 768px) {
+    label {
+      display: none;
+    }
+  }
+</style>

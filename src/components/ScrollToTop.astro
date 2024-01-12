@@ -1,0 +1,85 @@
+---
+import ArrowUp from "../icons/ArrowUp.astro";
+---
+
+<button type="button" class="scroll-to-top"><ArrowUp /></button>
+<style>
+  .scroll-to-top {
+    display: none;
+    place-content: center;
+
+    padding: 0;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    width: 44px;
+    height: 44px;
+
+    background: var(--color-light);
+    color: var(--color-dark);
+    box-shadow: var(--shadow);
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    cursor: pointer;
+
+    transition: all 0.2s ease-in-out;
+
+    display: none;
+    animation: appear 0.2s ease-in-out;
+  }
+
+  .scroll-to-top.show {
+    display: grid;
+  }
+
+  .scroll-to-top:hover {
+    transform: translate(0, -0.25rem);
+  }
+
+  @keyframes appear {
+    from {
+      opacity: 0;
+      bottom: 0;
+    }
+    to {
+      opacity: 1;
+      bottom: 1rem;
+    }
+  }
+</style>
+
+<script>
+  const scrollToTopButton = document.querySelector(".scroll-to-top");
+
+  const toggleScrollToTopButton = () => {
+    const scrollY = window.scrollY;
+
+    if (scrollY > 60) {
+      if (!scrollToTopButton.classList.contains("show")) {
+        scrollToTopButton.classList.add("show");
+      }
+    } else {
+      scrollToTopButton.classList.remove("show");
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  var timer;
+
+  window.addEventListener("DOMContentLoaded", () => {
+    window.addEventListener("scroll", () => {
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        toggleScrollToTopButton();
+      }, 200);
+    });
+    scrollToTopButton.addEventListener("click", scrollToTop);
+  });
+</script>

@@ -1,0 +1,50 @@
+---
+import Skill from "./Skill.astro";
+import CSS from "../icons/CSS.astro";
+import HTML from "../icons/HTML.astro";
+import Javascript from "../icons/Javascript.astro";
+import React from "../icons/React.astro";
+import PHP from "../icons/PHP.astro";
+import NodeJS from "../icons/NodeJS.astro";
+import Git from "../icons/Git.astro";
+---
+
+<section>
+  <h1>Skills</h1>
+  <div class="skills-container">
+    <Skill name="Javascript">
+      <Javascript slot="skill-icon" />
+    </Skill>
+
+    <Skill name="CSS">
+      <CSS slot="skill-icon" />
+    </Skill>
+
+    <Skill name="HTML">
+      <HTML slot="skill-icon" />
+    </Skill>
+
+    <Skill name="React">
+      <React slot="skill-icon" />
+    </Skill>
+
+    <Skill name="PHP">
+      <PHP slot="skill-icon" />
+    </Skill>
+
+    <Skill name="NodeJS">
+      <NodeJS slot="skill-icon" />
+    </Skill>
+
+    <Skill name="Git">
+      <Git slot="skill-icon" />
+    </Skill>
+  </div>
+</section>
+<style>
+  .skills-container {
+    display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 2rem;
+  }
+</style>

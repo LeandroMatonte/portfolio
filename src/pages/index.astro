@@ -1,0 +1,68 @@
+---
+import Header from "../components/Header.astro";
+import ScrollToTop from "../components/ScrollToTop.astro";
+import Layout from "../layouts/Layout.astro";
+import Timeline from "../components/Timeline.astro";
+import Skills from "../components/Skills.astro";
+
+const experience = [
+  {
+    title: "SODIO",
+    description: "Desarrollador Fullstack.",
+    date: "2021 - Actualidad",
+  },
+];
+
+const schooling = [
+  {
+    title: "ORT",
+    description: "Analista en Tecnologías de la Información",
+    date: "2024 - Actualidad",
+  },
+  {
+    title: "CODERHOUSE",
+    description: "React JS",
+    date: "2023",
+  },
+  {
+    title: "CODERHOUSE",
+    description: "Diseño UX/UI",
+    date: "2022",
+  },
+  {
+    title: "CODERHOUSE",
+    description: "Photoshop e Illustrator",
+    date: "2022",
+  },
+  {
+    title: "UTEC",
+    description: "Bootcamp Fullstack",
+    date: "2021",
+  },
+  {
+    title: "Fing",
+    description: "Ingeniería en computación",
+    date: "2019 - 2020",
+  },
+];
+---
+
+<Layout title="Portfolio de Leandro - Desarrollador Web con 2 años de experiencia">
+  <main>
+    <Header />
+    <Timeline title="Experiencia" list={experience} />
+    <Timeline title="Estudios" list={schooling} />
+    <Skills />
+    <ScrollToTop />
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    width: 100%;
+    max-width: var(--max-width);
+    padding: calc(1rem + var(--nav-height)) 1rem 1rem 1rem;
+    box-sizing: border-box;
+  }
+</style>

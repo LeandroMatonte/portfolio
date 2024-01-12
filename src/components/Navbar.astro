@@ -1,0 +1,167 @@
+---
+import Bars from "../icons/Bars.astro";
+import ContactLinks from "./ContactLinks.astro";
+import ThemeSwitch from "./ThemeSwitch.astro";
+---
+
+<nav>
+  <div class="nav-container">
+    <button type="button" id="menuToggle" aria-label="Botón para abrir el menú">
+      <Bars />
+    </button>
+    <div class="contact-hidden">
+      <ContactLinks showLabels={true} />
+    </div>
+    <ThemeSwitch />
+  </div>
+</nav>
+<style>
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    box-sizing: border-box;
+    z-index: 100;
+    padding: 1rem;
+
+    transition: all 0.2s ease-in-out;
+  }
+
+  .nav-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    width: 100%;
+    max-width: var(--max-width);
+
+    background: var(--blur-color);
+    box-sizing: border-box;
+    margin: 0 auto;
+    box-shadow: var(--shadow);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+
+    -webkit-backdrop-filter: var(--blur);
+    backdrop-filter: var(--blur);
+
+    transition: all 0.2s ease-in-out;
+  }
+
+  .contact-hidden {
+    order: 3;
+    flex: 1 0 100%;
+
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+
+    & :global(.contact-container) {
+      flex-direction: column;
+    }
+  }
+
+  nav.active {
+    padding: 0;
+
+    & .nav-container {
+      align-items: flex-start;
+      padding: 2rem;
+      border-radius: 0;
+      height: 100dvh;
+    }
+
+    & .contact-hidden {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  #menuToggle {
+    display: grid;
+    place-content: center;
+    font-size: 22px;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+    color: var(--color-light);
+  }
+
+  @media (min-width: 768px) {
+    nav {
+      display: flex;
+      align-items: center;
+      padding: 0;
+    }
+
+    .nav-container {
+      flex-wrap: nowrap;
+    }
+
+    .contact-hidden {
+      display: block;
+      flex: unset;
+      order: unset;
+
+      & :global(.contact-container) {
+        flex-direction: row;
+      }
+    }
+
+    #menuToggle {
+      display: none;
+    }
+  }
+</style>
+<script>
+  const verifyOpacity = () => {
+    const contactHidden = document.querySelector(".contact-hidden");
+    if (window.matchMedia("(min-width: 768px)").matches) {
+      const contactVisible = document.querySelector(".info-container .contact-container");
+
+      contactHidden.style.opacity = contactVisible.getBoundingClientRect().bottom < 0 ? 1 : 0;
+      contactHidden.style.visibility = contactVisible.getBoundingClientRect().bottom < 0 ? "visible" : "hidden";
+    } else {
+      contactHidden.style.removeProperty("opacity");
+      contactHidden.style.removeProperty("visibility");
+    }
+  };
+
+  const toggleMenu = (forceClose = false) => {
+    const nav = document.querySelector("nav");
+    const body = document.querySelector("body");
+
+    if (forceClose) {
+      nav.classList.remove("active");
+      body.classList.remove("no-scroll");
+    } else {
+      nav.classList.toggle("active");
+      body.classList.toggle("no-scroll");
+    }
+  };
+
+  const menuToggle = document.getElementById("menuToggle");
+
+  menuToggle.addEventListener("click", () => toggleMenu(false));
+
+  window.addEventListener("load", verifyOpacity);
+
+  window.addEventListener("scroll", throttle(verifyOpacity, 50));
+
+  const handleResize = throttle(() => {
+    verifyOpacity();
+    if (window.matchMedia("(min-width: 768px)").matches) {
+      toggleMenu(true);
+    }
+  }, 50);
+
+  window.addEventListener("resize", handleResize);
+</script>
