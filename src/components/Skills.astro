@@ -7,6 +7,7 @@ import React from "../icons/React.astro";
 import PHP from "../icons/PHP.astro";
 import NodeJS from "../icons/NodeJS.astro";
 import Git from "../icons/Git.astro";
+import AstroIcon from "../icons/Astro.astro";
 ---
 
 <section>
@@ -24,27 +25,31 @@ import Git from "../icons/Git.astro";
       <HTML slot="skill-icon" />
     </Skill>
 
-    <Skill name="React">
-      <React slot="skill-icon" />
+    <Skill name="Git">
+      <Git slot="skill-icon" />
     </Skill>
 
-    <Skill name="PHP">
-      <PHP slot="skill-icon" />
+    <Skill name="React">
+      <React slot="skill-icon" />
     </Skill>
 
     <Skill name="NodeJS">
       <NodeJS slot="skill-icon" />
     </Skill>
 
-    <Skill name="Git">
-      <Git slot="skill-icon" />
+    <Skill name="Astro">
+      <AstroIcon slot="skill-icon" />
+    </Skill>
+
+    <Skill name="PHP">
+      <PHP slot="skill-icon" />
     </Skill>
   </div>
 </section>
 <style>
   .skills-container {
     display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
     gap: 2rem;
   }
 </style>

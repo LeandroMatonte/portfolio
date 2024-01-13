@@ -1,4 +1,5 @@
 ---
+import Tooltip from "./Tooltip.astro";
 interface Props {
   url: string;
   label: string;
@@ -8,10 +9,13 @@ interface Props {
 const { url, label, showLabel } = Astro.props;
 ---
 
-<a class="pill" href={url} target="_blank" aria-label={label}>
-  <slot name="pill-icon" />
-  {showLabel ? <label>{label}</label> : null}
-</a>
+<Tooltip content={label}>
+  <a slot="tooltip-objective" class="pill" href={url} target="_blank" aria-label={label}>
+    <slot name="pill-icon" />
+    {showLabel ? <label>{label}</label> : null}
+  </a>
+  <p class="tooltip-content" slot="tooltip-content">{label}</p>
+</Tooltip>
 
 <style>
   .pill {
@@ -36,6 +40,10 @@ const { url, label, showLabel } = Astro.props;
   .pill:hover {
     background-color: var(--white);
     color: var(--color-accent);
+  }
+
+  label {
+    font-weight: 600;
   }
 
   @media (min-width: 768px) {

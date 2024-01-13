@@ -19,12 +19,6 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Raleway:wght@100;300;500;700&display=swap"
-      rel="stylesheet"
-    />
     <title>{title}</title>
   </head>
   <body class="background">
@@ -36,18 +30,26 @@ const { title } = Astro.props;
 
 <script is:inline>
 function throttle(func = null, limit = 0) {
-	let waiting = false;
-	return function () {
-		const context = this;
-		const args = arguments;
-		if (!waiting) {
-			func.apply(context, args);
-			waiting = true;
-			setTimeout(function () {
-				waiting = false;
-			}, limit);
-		}
-	};
+  let waiting = false;
+  let executed = false;
+  return function () {
+    const context = this;
+    const args = arguments;
+    if (!waiting) {
+      func.apply(context, args);
+      waiting = true;
+      executed = true;
+      setTimeout(function () {
+        waiting = false;
+        if (!executed) {
+          func.apply(context, args);
+          executed = true;
+        }
+      }, limit);
+    } else {
+      executed = false;
+    }
+  };
 }
 
 const getTheme = () => {
@@ -96,12 +98,53 @@ document.getElementById("themeToggle").addEventListener("click", handleToggleCli
     --color-muted: #353030;
 
     --blur-color: #dae2f999;
-    --blur: blur(0.5rem);
+    --blur: .5rem;
     --white: #fdfdfd;
+		--black: #13151a;
 
     --nav-height: 106px;
 
     --shadow: 0 0 1px #0001, 0 1px 2px #0001, 0 2px 4px #0001, 0 4px 8px #0001, 0 8px 16px #0001;
+  }
+
+  @font-face {
+    font-family: "Raleway";
+    src: url("/fonts/Raleway-Thin.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Raleway";
+    src: url("/fonts/Raleway-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+	@font-face {
+    font-family: "Raleway";
+    src: url("/fonts/Raleway-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Raleway";
+    src: url("/fonts/Raleway-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Raleway";
+    src: url("/fonts/Raleway-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
   }
 
   html.dark {
@@ -142,6 +185,7 @@ document.getElementById("themeToggle").addEventListener("click", handleToggleCli
   }
 
   .text-accent {
+    font-weight: 600;
     color: var(--color-accent);
   }
 

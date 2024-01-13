@@ -1,5 +1,6 @@
 ---
 import Bars from "../icons/Bars.astro";
+import XMark from "../icons/XMark.astro";
 import ContactLinks from "./ContactLinks.astro";
 import ThemeSwitch from "./ThemeSwitch.astro";
 ---
@@ -8,6 +9,7 @@ import ThemeSwitch from "./ThemeSwitch.astro";
   <div class="nav-container">
     <button type="button" id="menuToggle" aria-label="Botón para abrir el menú">
       <Bars />
+      <XMark />
     </button>
     <div class="contact-hidden">
       <ContactLinks showLabels={true} />
@@ -46,10 +48,12 @@ import ThemeSwitch from "./ThemeSwitch.astro";
     padding: 1rem;
     border-radius: var(--border-radius);
 
-    -webkit-backdrop-filter: var(--blur);
-    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: blur(var(--blur));
+    backdrop-filter: blur(var(--blur));
 
-    transition: all 0.2s ease-in-out;
+    transition:
+      all 0.2s ease-in-out,
+      backdrop-filter 0s;
   }
 
   .contact-hidden {
@@ -59,7 +63,6 @@ import ThemeSwitch from "./ThemeSwitch.astro";
     display: none;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.2s ease-in-out;
 
     & :global(.contact-container) {
       flex-direction: column;
@@ -74,9 +77,12 @@ import ThemeSwitch from "./ThemeSwitch.astro";
       padding: 2rem;
       border-radius: 0;
       height: 100dvh;
+      -webkit-backdrop-filter: blur(calc(var(--blur) * 3)) brightness(0.7);
+      backdrop-filter: blur(calc(var(--blur) * 3)) brightness(0.7);
     }
 
     & .contact-hidden {
+      transition: all 0.2s ease-in-out;
       display: block;
       opacity: 1;
       visibility: visible;
@@ -93,15 +99,34 @@ import ThemeSwitch from "./ThemeSwitch.astro";
     cursor: pointer;
     margin: 0;
     color: var(--color-light);
+    transition: all 0.2s ease-in-out;
+  }
+
+  #menuToggle.active :global(svg:nth-child(1)) {
+    display: none;
+  }
+
+  #menuToggle :global(svg:nth-child(2)) {
+    display: none;
+    animation: fadeInRotate 0.2s ease-in-out;
+  }
+
+  #menuToggle.active :global(svg:nth-child(2)) {
+    display: block;
+  }
+
+  @keyframes fadeInRotate {
+    0% {
+      opacity: 0;
+      transform: rotate(90deg);
+    }
+    100% {
+      opacity: 1;
+      transform: rotate(0deg);
+    }
   }
 
   @media (min-width: 768px) {
-    nav {
-      display: flex;
-      align-items: center;
-      padding: 0;
-    }
-
     .nav-container {
       flex-wrap: nowrap;
     }
@@ -110,6 +135,7 @@ import ThemeSwitch from "./ThemeSwitch.astro";
       display: block;
       flex: unset;
       order: unset;
+      transition: opacity 0.2s ease-in-out;
 
       & :global(.contact-container) {
         flex-direction: row;
@@ -136,13 +162,16 @@ import ThemeSwitch from "./ThemeSwitch.astro";
   };
 
   const toggleMenu = (forceClose = false) => {
+    const menuToggle = document.getElementById("menuToggle");
     const nav = document.querySelector("nav");
     const body = document.querySelector("body");
 
     if (forceClose) {
+      menuToggle.classList.remove("active");
       nav.classList.remove("active");
       body.classList.remove("no-scroll");
     } else {
+      menuToggle.classList.toggle("active");
       nav.classList.toggle("active");
       body.classList.toggle("no-scroll");
     }
