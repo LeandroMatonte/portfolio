@@ -1,91 +1,94 @@
 ---
 interface Props {
-  item: {
-    title: string;
-    description: string;
-    date?: string;
-  };
+	item: {
+		active: boolean;
+		title: string;
+		description: string;
+		date?: string;
+	};
 }
 
 const { item } = Astro.props;
-const { title, description, date } = item;
+const { active, title, description, date } = item;
 ---
 
-<li class="timeline-item">
-  <h2>{title}</h2>
-  <p>{description}</p>
-  {date ? <small>{date}</small> : null}
+<li class:list={["timeline-item", { active }]}>
+	<h2>{title}</h2>
+	<p>{description}</p>
+	{date ? <small>{date}</small> : null}
 </li>
 
 <style>
-  .timeline-item {
-    position: relative;
-    margin-left: 1rem;
-    padding-left: 2rem;
-  }
+	.timeline-item {
+		position: relative;
+		margin-left: 1rem;
+		padding-left: 2rem;
+	}
 
-  .timeline-item:not(:last-child) {
-    padding-bottom: 2rem;
-  }
+	.timeline-item:not(:last-child) {
+		padding-bottom: 2rem;
+	}
 
-  .timeline-item h2 {
-    margin-bottom: 0.25em;
-  }
+	.timeline-item h2 {
+		margin-bottom: 0.25em;
+	}
 
-  .timeline-item p {
-    margin: 0;
-    margin-bottom: 0.25em;
-  }
+	.timeline-item p {
+		margin: 0;
+		margin-bottom: 0.25em;
+	}
 
-  .timeline-item small {
-    display: block;
-    margin: 0;
-    margin-bottom: 0.25em;
-  }
+	.timeline-item small {
+		display: block;
+		margin: 0;
+		margin-bottom: 0.25em;
+	}
 
-  .timeline-item:not(:last-child):before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: var(--color-light);
-    opacity: .4;
-  }
+	.timeline-item:not(:last-child):before {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 2px;
+		background: var(--color-light);
+		opacity: 0.4;
+	}
 
-  .timeline-item:after {
-    content: "";
-    position: absolute;
-    left: -6px;
-    top: 2px;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: var(--color-light);
-  }
+	.timeline-item:after {
+		content: "";
+		position: absolute;
+		left: -6px;
+		top: 0;
+		width: 14px;
+		height: 14px;
+		border-radius: 50%;
+		background: var(--color-light);
+		-webkit-transform: translate3d(0, 0, 0);
+	}
 
-  .timeline-item:first-child::after {
-    width: 18px;
-    height: 18px;
-    left: -8px;
-    top: 0;
-    background: var(--color-accent-light);
-    
-    filter: drop-shadow(0px 0px 8px var(--color-accent-light)) drop-shadow(0px 0px 16px var(--color-accent-light)) drop-shadow(0px 0px 32px var(--color-accent-light));
-    animation: glow 1.4s ease-in-out;
-  }
+	.timeline-item.active::after {
+		width: 18px;
+		height: 18px;
+		left: -8px;
+		top: 0;
+		background: var(--color-accent-light);
 
-  small {
-    color: var(--color-muted);
-  }
+		filter: drop-shadow(0px 0px 8px var(--color-accent-light)) drop-shadow(0px 0px 16px var(--color-accent-light))
+			drop-shadow(0px 0px 32px var(--color-accent-light));
+		animation: glow 1.4s ease-in-out;
+	}
 
-  @keyframes glow {
-    0% {
-      box-shadow: 0 0 0 0 var(--color-accent-light);
-    }
-    100% {
-      box-shadow: 0 0 6px 16px transparent;
-    }
-  }
+	small {
+		color: var(--color-muted);
+	}
+
+	@keyframes glow {
+		0% {
+			box-shadow: 0 0 0 0 var(--color-accent-light);
+		}
+		100% {
+			box-shadow: 0 0 6px 16px transparent;
+		}
+	}
 </style>

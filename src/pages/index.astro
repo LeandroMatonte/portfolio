@@ -7,47 +7,42 @@ import Skills from "../components/Skills.astro";
 
 const experience = [
   {
+    active: true,
     title: "SODIO",
-    description: "Desarrollador Fullstack.",
+    description: "Desarrollador Fullstack",
     date: "2021 - Actualidad",
   },
 ];
 
 const schooling = [
   {
-    title: "ORT",
-    description: "Analista en Tecnologías de la Información",
-    date: "2024 - Actualidad",
-  },
-  {
+    active: false,
     title: "CODERHOUSE",
     description: "React JS",
     date: "2023",
   },
   {
+    active: false,
     title: "CODERHOUSE",
     description: "Diseño UX/UI",
     date: "2022",
   },
   {
-    title: "CODERHOUSE",
-    description: "Photoshop e Illustrator",
-    date: "2022",
-  },
-  {
+    active: false,
     title: "UTEC",
     description: "Bootcamp Fullstack",
     date: "2021",
   },
   {
+    active: false,
     title: "Fing",
     description: "Ingeniería en computación",
-    date: "2019 - 2020",
+    date: "2019 - 2021",
   },
 ];
 ---
 
-<Layout title="Portfolio de Leandro - Desarrollador Web con 2 años de experiencia">
+<Layout title="Portfolio de Leandro - Desarrollador Web con 3 años de experiencia">
   <main>
     <Header />
     <Timeline title="Experiencia" list={experience} />
