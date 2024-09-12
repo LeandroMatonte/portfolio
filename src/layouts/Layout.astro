@@ -2,7 +2,7 @@
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 interface Props {
-  title: string;
+	title: string;
 }
 
 const { title } = Astro.props;
@@ -10,208 +10,209 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="¿Necesitas ayuda para construir los proyectos que tienes en mente? Yo puedo ayudarte con eso, echa un vistazo a mi Portfolio"
-    />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-  </head>
-  <body class="background">
-    <Navbar />
-    <slot />
-    <Footer />
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="description"
+			content="Cuento con 3 años de experiencia en desarrollo web, trabajando en proyectos de diferentes escalas y tecnologías. Conocimientos en Javascript, React, MYQSL, PHP, Astro, entre otros."
+		/>
+		<meta name="viewport" content="width=device-width" />
+		<meta name="google-site-verification" content="FMgz4eMmd-43hIX2VU0P1lh9sD3qQtvwl_bA_I_g0C4" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="background">
+		<Navbar />
+		<slot />
+		<Footer />
+	</body>
 </html>
 
 <script is:inline>
-function throttle(func = null, limit = 0) {
-  let waiting = false;
-  let executed = false;
-  return function () {
-    const context = this;
-    const args = arguments;
-    if (!waiting) {
-      func.apply(context, args);
-      waiting = true;
-      executed = true;
-      setTimeout(function () {
-        waiting = false;
-        if (!executed) {
-          func.apply(context, args);
-          executed = true;
-        }
-      }, limit);
-    } else {
-      executed = false;
-    }
-  };
-}
-
-const getTheme = () => {
-	let theme = "light";
-
-	if (localStorage && localStorage.getItem("theme")) {
-		theme = localStorage.getItem("theme");
-	} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-		theme = "dark";
+	function throttle(func = null, limit = 0) {
+		let waiting = false;
+		let executed = false;
+		return function () {
+			const context = this;
+			const args = arguments;
+			if (!waiting) {
+				func.apply(context, args);
+				waiting = true;
+				executed = true;
+				setTimeout(function () {
+					waiting = false;
+					if (!executed) {
+						func.apply(context, args);
+						executed = true;
+					}
+				}, limit);
+			} else {
+				executed = false;
+			}
+		};
 	}
 
-	return theme;
-};
+	const getTheme = () => {
+		let theme = "light";
 
-const theme = getTheme();
+		if (localStorage && localStorage.getItem("theme")) {
+			theme = localStorage.getItem("theme");
+		} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+			theme = "dark";
+		}
 
-if (theme === "light") {
-	document.documentElement.classList.remove("dark");
-} else {
-	document.documentElement.classList.add("dark");
-}
+		return theme;
+	};
 
-window.localStorage.setItem("theme", theme);
+	const theme = getTheme();
 
-const handleToggleClick = () => {
-	const element = document.documentElement;
-	element.classList.toggle("dark");
+	if (theme === "light") {
+		document.documentElement.classList.remove("dark");
+	} else {
+		document.documentElement.classList.add("dark");
+	}
 
-	const isDark = element.classList.contains("dark");
-	localStorage.setItem("theme", isDark ? "dark" : "light");
-	document.getElementById("themeToggle").classList.toggle("dark");
-};
+	window.localStorage.setItem("theme", theme);
 
-document.getElementById("themeToggle").addEventListener("click", handleToggleClick);
+	const handleToggleClick = () => {
+		const element = document.documentElement;
+		element.classList.toggle("dark");
+
+		const isDark = element.classList.contains("dark");
+		localStorage.setItem("theme", isDark ? "dark" : "light");
+		document.getElementById("themeToggle").classList.toggle("dark");
+	};
+
+	document.getElementById("themeToggle").addEventListener("click", handleToggleClick);
 </script>
 
 <style is:global>
-  :root {
-    --max-width: 800px;
-    --border-radius: 0.5rem;
+	:root {
+		--max-width: 800px;
+		--border-radius: 0.5rem;
 
-    --color-dark: #fdfdfd;
-    --color-light: #13151a;
-    --color-accent: #3657fc;
-    --color-accent-light: #758bfd;
-    --color-muted: #353030;
+		--color-dark: #fdfdfd;
+		--color-light: #13151a;
+		--color-accent: #3657fc;
+		--color-accent-light: #758bfd;
+		--color-muted: #353030;
 
-    --blur-color: #dae2f999;
-    --blur: .5rem;
-    --white: #fdfdfd;
+		--blur-color: #dae2f999;
+		--blur: 0.5rem;
+		--white: #fdfdfd;
 		--black: #13151a;
 
-    --nav-height: 106px;
+		--nav-height: 106px;
 
-    --shadow: 0 0 1px #0001, 0 1px 2px #0001, 0 2px 4px #0001, 0 4px 8px #0001, 0 8px 16px #0001;
-  }
-
-  @font-face {
-    font-family: "Raleway";
-    src: url("/fonts/Raleway-Thin.ttf") format("truetype");
-    font-weight: 100;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "Raleway";
-    src: url("/fonts/Raleway-Light.ttf") format("truetype");
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-  }
+		--shadow: 0 0 1px #0001, 0 1px 2px #0001, 0 2px 4px #0001, 0 4px 8px #0001, 0 8px 16px #0001;
+	}
 
 	@font-face {
-    font-family: "Raleway";
-    src: url("/fonts/Raleway-Regular.ttf") format("truetype");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
+		font-family: "Raleway";
+		src: url("/fonts/Raleway-Thin.ttf") format("truetype");
+		font-weight: 100;
+		font-style: normal;
+		font-display: swap;
+	}
 
-  @font-face {
-    font-family: "Raleway";
-    src: url("/fonts/Raleway-Medium.ttf") format("truetype");
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-  }
+	@font-face {
+		font-family: "Raleway";
+		src: url("/fonts/Raleway-Light.ttf") format("truetype");
+		font-weight: 300;
+		font-style: normal;
+		font-display: swap;
+	}
 
-  @font-face {
-    font-family: "Raleway";
-    src: url("/fonts/Raleway-Bold.ttf") format("truetype");
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
+	@font-face {
+		font-family: "Raleway";
+		src: url("/fonts/Raleway-Regular.ttf") format("truetype");
+		font-weight: 400;
+		font-style: normal;
+		font-display: swap;
+	}
 
-  html.dark {
-    --color-dark: #13151a;
-    --color-light: #fdfdfd;
-    --color-accent: #758bfd;
-    --color-accent-light: #3657fc;
-    --color-muted: #aa9e9e;
+	@font-face {
+		font-family: "Raleway";
+		src: url("/fonts/Raleway-Medium.ttf") format("truetype");
+		font-weight: 500;
+		font-style: normal;
+		font-display: swap;
+	}
 
-    --blur-color: #758bfd38;
-  }
+	@font-face {
+		font-family: "Raleway";
+		src: url("/fonts/Raleway-Bold.ttf") format("truetype");
+		font-weight: 700;
+		font-style: normal;
+		font-display: swap;
+	}
 
-  html {
-    font-family: "Raleway", sans-serif;
-    background: var(--color-dark);
-    transition: background 0.2s ease-in-out;
-    margin: 0;
-    padding: 0;
-  }
+	html.dark {
+		--color-dark: #13151a;
+		--color-light: #fdfdfd;
+		--color-accent: #758bfd;
+		--color-accent-light: #3657fc;
+		--color-muted: #aa9e9e;
 
-  body {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    margin: 0;
-    padding: 0;
+		--blur-color: #758bfd38;
+	}
 
-    color: var(--color-light);
-    font-size: 20px;
-    line-height: 1.6;
-  }
+	html {
+		font-family: "Raleway", sans-serif;
+		background: var(--color-dark);
+		transition: background 0.2s ease-in-out;
+		margin: 0;
+		padding: 0;
+	}
 
-  body.no-scroll {
-    overflow: hidden;
-  }
+	body {
+		display: grid;
+		grid-template-rows: auto 1fr;
+		margin: 0;
+		padding: 0;
 
-  .background {
-    background-image: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(120, 119, 198, 0.3), rgba(255, 255, 255, 0));
-  }
+		color: var(--color-light);
+		font-size: 20px;
+		line-height: 1.6;
+	}
 
-  .text-accent {
-    font-weight: 600;
-    color: var(--color-accent);
-  }
+	body.no-scroll {
+		overflow: hidden;
+	}
 
-  img {
-    display: block;
-    max-width: 100%;
-  }
+	.background {
+		background-image: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(120, 119, 198, 0.3), rgba(255, 255, 255, 0));
+	}
 
-  h1 {
-    font-size: 1.6rem;
-    font-weight: 700;
-    line-height: 1;
-    margin: 0;
-    margin-bottom: 1em;
-  }
+	.text-accent {
+		font-weight: 600;
+		color: var(--color-accent);
+	}
 
-  h2 {
-    font-size: 1.2rem;
-    font-weight: 700;
-    line-height: 1;
-    margin: 0;
-    margin-bottom: 1em;
-  }
+	img {
+		display: block;
+		max-width: 100%;
+	}
 
-  p {
-    margin: 0;
-    margin-bottom: 1em;
-  }
+	h1 {
+		font-size: 1.6rem;
+		font-weight: 700;
+		line-height: 1;
+		margin: 0;
+		margin-bottom: 1em;
+	}
+
+	h2 {
+		font-size: 1.2rem;
+		font-weight: 700;
+		line-height: 1;
+		margin: 0;
+		margin-bottom: 1em;
+	}
+
+	p {
+		margin: 0;
+		margin-bottom: 1em;
+	}
 </style>
