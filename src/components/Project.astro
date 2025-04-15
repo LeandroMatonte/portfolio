@@ -1,11 +1,10 @@
 ---
 import Badge from "./Badge.astro";
-
-const { title, description, images, url, badges } = Astro.props;
+const { title, image, url, badges } = Astro.props;
 ---
 
 <article>
-	<img src={images[0]} alt={title} width="100%" height="auto" />
+	<img src={image.src} alt={title} width={image.width} height={260} />
 	<h2>
 		{
 			url ? (
@@ -25,6 +24,7 @@ const { title, description, images, url, badges } = Astro.props;
 	img {
 		margin-bottom: 0.5rem;
 		border-radius: 0.25rem;
+		object-fit: cover;
 	}
 
 	a {
