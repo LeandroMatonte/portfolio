@@ -4,60 +4,68 @@ import ScrollToTop from "../components/ScrollToTop.astro";
 import Layout from "../layouts/Layout.astro";
 import Timeline from "../components/Timeline.astro";
 import Skills from "../components/Skills.astro";
+import Projects from "../components/Projects.astro";
 
 const experience = [
-  {
-    active: true,
-    title: "SODIO",
-    description: "Desarrollador Fullstack",
-    date: "2021 - Actualidad",
-  },
+	{
+		active: true,
+		title: "SODIO",
+		description: "Desarrollador Fullstack",
+		date: "2021 - Actualidad",
+	},
+	{
+		active: false,
+		title: "Freelance",
+		description: "Desarrollador Web",
+		date: "Actualidad",
+	},
 ];
 
 const schooling = [
-  {
-    active: false,
-    title: "CODERHOUSE",
-    description: "React JS",
-    date: "2023",
-  },
-  {
-    active: false,
-    title: "CODERHOUSE",
-    description: "Diseño UX/UI",
-    date: "2022",
-  },
-  {
-    active: false,
-    title: "UTEC",
-    description: "Bootcamp Fullstack",
-    date: "2021",
-  },
-  {
-    active: false,
-    title: "Fing",
-    description: "Ingeniería en computación",
-    date: "2019 - 2021",
-  },
+	{
+		active: false,
+		title: "CODERHOUSE",
+		description: "React JS",
+		date: "2023",
+	},
+	{
+		active: false,
+		title: "CODERHOUSE",
+		description: "Diseño UX/UI",
+		date: "2022",
+	},
+	{
+		active: false,
+		title: "UTEC",
+		description: "Bootcamp Fullstack",
+		date: "2021",
+	},
+	{
+		active: false,
+		title: "Fing",
+		description: "Ingeniería en computación",
+		date: "2019 - 2021",
+	},
 ];
 ---
 
 <Layout title="Portfolio de Leandro - Desarrollador Web con 3 años de experiencia">
-  <main>
-    <Header />
-    <Timeline title="Experiencia" list={experience} />
-    <Timeline title="Estudios" list={schooling} />
-    <Skills />
-    <ScrollToTop />
-  </main>
+	<main>
+		<Header />
+		<Timeline title="Experiencia" list={experience} />
+		<Projects />
+		<Timeline title="Estudios" list={schooling} />
+		<Skills />
+		<ScrollToTop />
+	</main>
 </Layout>
 
 <style>
-  main {
-    margin: auto;
-    width: 100%;
-    max-width: var(--max-width);
-    padding: calc(1rem + var(--nav-height)) 1rem 1rem 1rem;
-    box-sizing: border-box;
-  }
+	main {
+		margin: auto;
+		width: 100%;
+		max-width: var(--max-width);
+		padding: calc(1rem + var(--nav-height)) 1rem 1rem 1rem;
+		box-sizing: border-box;
+	}
 </style>

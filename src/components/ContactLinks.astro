@@ -3,36 +3,31 @@ import Pill from "./Pill.astro";
 import Github from "../icons/Github.astro";
 import Linkedin from "../icons/Linkedin.astro";
 import Mail from "../icons/Mail.astro";
-import Phone from "../icons/Phone.astro";
-import WhatsApp from "../icons/WhatsApp.astro";
 
 interface Props {
-  showLabels: boolean;
+	showLabels: boolean;
 }
 
 const { showLabels } = Astro.props;
 ---
 
 <div class="contact-container">
-  <Pill url="mailto:leandromatonte99@gmail.com" label="Contactar por mail" showLabel={showLabels}>
-    <Mail slot="pill-icon" />
-  </Pill>
-  <Pill url="tel:+598 92 724 055" label="Llamar al celular" showLabel={showLabels}>
-    <Phone slot="pill-icon" />
-  </Pill>
-  <Pill url="https://www.linkedin.com/in/leandro-matonte/" label="Ver perfil de LinkedIn" showLabel={showLabels}>
-    <Linkedin slot="pill-icon" />
-  </Pill>
-  <Pill url="https://github.com/LeandroMatonte" label="Ver perfil de Github" showLabel={showLabels}>
-    <Github slot="pill-icon" />
-  </Pill>
+	<Pill url="mailto:leandromatonte99@gmail.com" label="Contactar por mail" showLabel={showLabels}>
+		<Mail slot="pill-icon" />
+	</Pill>
+	<Pill url="https://www.linkedin.com/in/leandro-matonte/" label="Ver perfil de LinkedIn" showLabel={showLabels}>
+		<Linkedin slot="pill-icon" />
+	</Pill>
+	<Pill url="https://github.com/LeandroMatonte" label="Ver perfil de Github" showLabel={showLabels}>
+		<Github slot="pill-icon" />
+	</Pill>
 </div>
 
 <style>
-  .contact-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    width: 100%;
-  }
+	.contact-container {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		width: 100%;
+	}
 </style>

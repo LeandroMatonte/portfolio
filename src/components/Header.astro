@@ -3,51 +3,58 @@ import ContactLinks from "./ContactLinks.astro";
 ---
 
 <header>
-  <img src="profile.webp" alt="Leandro" width="140" height="140" />
-  <div class="info-container">
-    <h1>Hola, soy Leandro</h1>
-    <p><span class="text-accent">Desarrollador web</span> de Uruguay desde hace más de 3 años</p>
-    <p>Me gusta estar constantemente aprendiendo y enfrentarme a nuevos desafíos</p>
-    <ContactLinks showLabels={false} />
-  </div>
+	<img src="profile.webp" alt="Leandro" width="140" height="140" />
+	<div class="info-container">
+		<h1>Hola, soy Leandro</h1>
+		<p>
+			<span class="text-accent">Desarrollador web</span> con más de 4 años de experiencia creando soluciones centradas en
+			el usuario.
+		</p>
+		<p>
+			Interesado en utilizar tecnologías como React, Next.js y Vite, con enfoque en rendimiento, diseño responsivo y
+			buenas prácticas.
+		</p>
+		<p>Apasionado por el aprendizaje continuo y los desafíos.</p>
+		<ContactLinks showLabels={false} />
+	</div>
 </header>
 
 <style>
-  header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 
-    gap: 1rem;
+		gap: 1rem;
 
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
+		padding-bottom: 2rem;
+		margin-bottom: 2rem;
 
-    & img {
-      border-radius: 50%;
-      width: 200px;
-      height: 200px;
-    }
+		& img {
+			border-radius: 50%;
+			width: 200px;
+			height: 200px;
+		}
 
-    & p {
-      margin-bottom: 0;
-      text-wrap: pretty;
-    }
+		& p {
+			margin-bottom: 0;
+			text-wrap: pretty;
+		}
 
-    & p:not(:last-child) {
-      margin-bottom: 0.5em;
-    }
+		& p:not(:last-child) {
+			margin-bottom: 0.5em;
+		}
 
-    & .info-container {
-      width: 100%;
-    }
-  }
+		& .info-container {
+			width: 100%;
+		}
+	}
 
-  @media (min-width: 768px) {
-    header {
-      flex-direction: row;
-      align-items: center;
-      gap: 2rem;
-    }
-  }
+	@media (min-width: 768px) {
+		header {
+			flex-direction: row;
+			align-items: center;
+			gap: 2rem;
+		}
+	}
 </style>

@@ -1,0 +1,44 @@
+---
+import Badge from "./Badge.astro";
+
+const { title, description, images, url, badges } = Astro.props;
+---
+
+<article>
+	<img src={images[0]} alt={title} width="100%" height="auto" />
+	<h2>
+		{
+			url ? (
+				<a href={url} target="_blank" rel="noopener noreferrer">
+					{title}
+				</a>
+			) : (
+				title
+			)
+		}
+	</h2>
+	<div class="badges">
+		{badges.map((badge) => <Badge title={badge.title} />)}
+	</div>
+</article>
+<style>
+	img {
+		margin-bottom: 0.5rem;
+		border-radius: 0.25rem;
+	}
+
+	a {
+		text-decoration: none;
+		color: var(--color-accent);
+	}
+
+	h2 {
+		font-size: 1rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.badges {
+		display: flex;
+		gap: 0.5rem;
+	}
+</style>

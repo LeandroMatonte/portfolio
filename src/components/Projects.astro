@@ -1,0 +1,59 @@
+---
+import Project from "./Project.astro";
+
+const projects = [
+	{
+		title: "Empaques Premier",
+		description:
+			"Desarrollo completo del sitio de Empaques Premier, desde el diseño hasta su puesta en producción. Implementé una interfaz limpia con llamados a la acción (CTA) bien definidos y optimicé el rendimiento del sitio, alcanzando un puntaje superior a 95 en Google PageSpeed Insights.",
+		images: ["img/empaques-premier.webp"],
+		url: "https://empaquespremier.com",
+		badges: [
+			{
+				title: "Astro",
+			},
+		],
+	},
+	{
+		title: "Cxrto",
+		description:
+			"Herramienta de acortado de URLs con back-end propio, en este caso utilicé NextJS para el frontend, Supabase para el backend y Vercel como hosting.",
+		images: ["img/cxrto.webp"],
+		url: "https://cxrto.vercel.app",
+		badges: [
+			{
+				title: "NextJS",
+			},
+			{
+				title: "Supabase",
+			},
+		],
+	},
+];
+---
+
+<section>
+	<h2>Proyectos</h2>
+	<div class="projects-container">
+		{
+			projects.map((project) => (
+				<Project
+					title={project.title}
+					description={project.description}
+					images={project.images}
+					url={project.url}
+					badges={project.badges}
+				/>
+			))
+		}
+	</div>
+</section>
+<style>
+	.projects-container {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2rem;
+		padding-bottom: 2rem;
+		margin-bottom: 2rem;
+	}
+</style>
