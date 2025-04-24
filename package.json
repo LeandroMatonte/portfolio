@@ -1,19 +1,20 @@
 {
-  "name": "",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev --host",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@lucide/astro": "^0.503.0",
-    "astro": "^4.16.18"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4"
-  }
+	"name": "portfolio-leandro",
+	"type": "module",
+	"version": "1.0.0",
+	"scripts": {
+		"dev": "astro dev --host",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@lucide/astro": "^0.503.0",
+		"astro": "^4.16.18",
+		"sharp": "^0.34.1"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4"
+	}
 }
