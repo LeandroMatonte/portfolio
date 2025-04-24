@@ -1,22 +1,33 @@
 ---
-import LightbulbIcon from "../icons/Lightbulb.astro";
+import { Moon, Sun } from "@lucide/astro";
 ---
 
 <button type="button" id="themeToggle" aria-label="Botón para cambiar el tema de la página">
-  <LightbulbIcon />
+	<Moon class="moon-icon" />
+	<Sun class="sun-icon" />
 </button>
 
 <style>
-  #themeToggle {
-    display: grid;
-    place-content: center;
-    font-size: 22px;
-    padding: 0.5rem;
-    border: 2px solid transparent;
-    color: var(--color-light);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    background: none;
-  }
+	#themeToggle {
+		display: grid;
+		place-content: center;
+		font-size: 22px;
+		padding: 0.5rem;
+		border: 2px solid transparent;
+		color: var(--color-light);
+		border-radius: 50%;
+		cursor: pointer;
+		transition: all 0.2s ease-in-out;
+		background: none;
+	}
+
+	html .moon-icon,
+	html.dark .sun-icon {
+		display: block;
+	}
+
+	html.dark .moon-icon,
+	html .sun-icon {
+		display: none;
+	}
 </style>

@@ -2,7 +2,7 @@
 import Pill from "./Pill.astro";
 import Github from "../icons/Github.astro";
 import Linkedin from "../icons/Linkedin.astro";
-import Mail from "../icons/Mail.astro";
+import { Mail } from "@lucide/astro";
 
 interface Props {
 	showLabels: boolean;
@@ -28,6 +28,5 @@ const { showLabels } = Astro.props;
 		display: flex;
 		flex-wrap: wrap;
 		gap: 1rem;
-		width: 100%;
 	}
 </style>

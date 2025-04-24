@@ -1,15 +1,17 @@
 ---
+import { Image } from "astro:assets";
 import Badge from "./Badge.astro";
 const { title, image, url, badges } = Astro.props;
+import { ExternalLink } from "@lucide/astro";
 ---
 
 <article>
-	<img src={image.src} alt={title} width={image.width} height={260} />
+	<Image src={image} alt={title} width={720} height={260} densities={[1, 2]} quality={90} />
 	<h2>
 		{
 			url ? (
-				<a href={url} target="_blank" rel="noopener noreferrer">
-					{title}
+				<a href={url} target="_blank" rel="noopener noreferrer" aria-label={`Abrir ${title} en una nueva pestaña`}>
+					<ExternalLink size={16}/> {title}
 				</a>
 			) : (
 				title
@@ -19,10 +21,11 @@ const { title, image, url, badges } = Astro.props;
 	<div class="badges">
 		{badges.map((badge) => <Badge title={badge.title} />)}
 	</div>
+	<p class="description">{Astro.props.description}</p>
 </article>
 <style>
 	img {
-		margin-bottom: 0.5rem;
+		margin-bottom: 1rem;
 		border-radius: 0.25rem;
 		object-fit: cover;
 	}
@@ -32,13 +35,23 @@ const { title, image, url, badges } = Astro.props;
 		color: var(--color-accent);
 	}
 
+	a:hover {
+		text-decoration: underline;
+		color: var(--color-accent-light);
+	}
+
 	h2 {
-		font-size: 1rem;
-		margin-bottom: 0.5rem;
+		font-size: 1.2rem;
+		margin-bottom: 0.75rem;
 	}
 
 	.badges {
 		display: flex;
 		gap: 0.5rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.description {
+		font-size: 1rem;
 	}
 </style>

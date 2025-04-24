@@ -14,7 +14,7 @@ const { title } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta
 			name="description"
-			content="Cuento con más de 4 años de experiencia en desarrollo web, trabajando en proyectos de diferentes escalas y tecnologías. Conocimientos en Javascript, React, Vite, NextJS, MYQSL, PHP, Astro, entre otros."
+			content="Cuento con más de 4 años de experiencia en desarrollo web, trabajando en proyectos de diferentes escalas y tecnologías. Conocimientos en React, NextJS, Javascript, MYQSL, PHP, Astro, entre otros."
 		/>
 		<meta name="viewport" content="width=device-width" />
 		<meta name="google-site-verification" content="FMgz4eMmd-43hIX2VU0P1lh9sD3qQtvwl_bA_I_g0C4" />
@@ -33,26 +33,12 @@ const { title } = Astro.props;
 </html>
 
 <script is:inline>
-	function throttle(func = null, limit = 0) {
-		let waiting = false;
-		let executed = false;
-		return function () {
+	function debounce(func, wait) {
+		let timeout;
+		return function (...args) {
 			const context = this;
-			const args = arguments;
-			if (!waiting) {
-				func.apply(context, args);
-				waiting = true;
-				executed = true;
-				setTimeout(function () {
-					waiting = false;
-					if (!executed) {
-						func.apply(context, args);
-						executed = true;
-					}
-				}, limit);
-			} else {
-				executed = false;
-			}
+			clearTimeout(timeout);
+			timeout = setTimeout(() => func.apply(context, args), wait);
 		};
 	}
 

@@ -1,16 +1,16 @@
 ---
 import Project from "./Project.astro";
 
-import premierImage from "../../img/empaques-premier.webp";
-import cxrtoImage from "../../img/cxrto.webp";
+import premierImage from "../img/empaques-premier.webp";
+import cxrtoImage from "../img/cxrto.webp";
 ---
 
 <section>
-	<h2>Proyectos personales</h2>
+	<h2>Proyectos</h2>
 	<div class="projects-container">
 		<Project
 			title="Empaques Premier"
-			description="Desarrollo completo del sitio de Empaques Premier, desde el diseño hasta su puesta en producción. Implementé una interfaz limpia con llamados a la acción (CTA) bien definidos y optimicé el rendimiento del sitio, alcanzando un puntaje superior a 95 en Google PageSpeed Insights."
+			description="Sitio web de una empresa de empaques flexibles, en este caso utilicé Astro para el frontend, se rediseñó la página por completo."
 			image={premierImage}
 			url="https://empaquespremier.com"
 			badges={[
@@ -21,7 +21,7 @@ import cxrtoImage from "../../img/cxrto.webp";
 		/>
 		<Project
 			title="Cxrto"
-			description="Herramienta de acortado de URLs con back-end propio, en este caso utilicé NextJS para el frontend, Supabase para el backend y Vercel como hosting."
+			description="Herramienta de acortado de URLs, utilicé NextJS para el frontend, Supabase para el backend y Vercel como hosting."
 			image={cxrtoImage}
 			url="https://cxrto.vercel.app"
 			badges={[

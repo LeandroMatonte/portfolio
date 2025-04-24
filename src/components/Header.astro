@@ -1,20 +1,18 @@
 ---
 import ContactLinks from "./ContactLinks.astro";
+import { Image } from "astro:assets";
+import profileImage from "../img/profile.webp";
 ---
 
 <header>
-	<img src="profile.webp" alt="Leandro" width="140" height="140" />
+	<Image src={profileImage} alt="Leandro" quality={60} densities={[1, 2]} />
 	<div class="info-container">
 		<h1>Hola, soy Leandro</h1>
 		<p>
 			<span class="text-accent">Desarrollador web</span> con más de 4 años de experiencia creando soluciones centradas en
 			el usuario.
 		</p>
-		<p>
-			Interesado en utilizar tecnologías como React, Next.js y Vite, con enfoque en rendimiento, diseño responsivo y
-			buenas prácticas.
-		</p>
-		<p>Apasionado por el aprendizaje continuo y los desafíos.</p>
+		<p class="mb-4">Apasionado por el aprendizaje continuo y los desafíos.</p>
 		<ContactLinks showLabels={false} />
 	</div>
 </header>
@@ -34,20 +32,21 @@ import ContactLinks from "./ContactLinks.astro";
 			border-radius: 50%;
 			width: 200px;
 			height: 200px;
+			margin-bottom: 1rem;
 		}
 
 		& p {
-			margin-bottom: 0;
-			text-wrap: pretty;
-		}
-
-		& p:not(:last-child) {
 			margin-bottom: 0.5em;
+			text-wrap: pretty;
 		}
 
 		& .info-container {
 			width: 100%;
 		}
+	}
+
+	header .mb-4 {
+		margin-bottom: 1rem;
 	}
 
 	@media (min-width: 768px) {
