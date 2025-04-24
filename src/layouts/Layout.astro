@@ -16,13 +16,14 @@ const { title } = Astro.props;
 			name="description"
 			content="Cuento con más de 4 años de experiencia en desarrollo web, trabajando en proyectos de diferentes escalas y tecnologías. Conocimientos en React, NextJS, Javascript, MYQSL, PHP, Astro, entre otros."
 		/>
+		<meta name="keywords" content="Desarrollador web, Leandro, Portfolio, React, NextJS, Javascript, MYQSL, Astro" />
+		<meta name="author" content="Leandro" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="google-site-verification" content="FMgz4eMmd-43hIX2VU0P1lh9sD3qQtvwl_bA_I_g0C4" />
+		<meta name="generator" content={Astro.generator} />
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 		<link rel="manifest" href="/site.webmanifest" />
-		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
 	<body class="background">
@@ -43,15 +44,19 @@ const { title } = Astro.props;
 	}
 
 	const getTheme = () => {
-		let theme = "light";
-
-		if (localStorage && localStorage.getItem("theme")) {
-			theme = localStorage.getItem("theme");
-		} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-			theme = "dark";
+		if (localStorage?.getItem("theme")) {
+			return localStorage.getItem("theme");
 		}
 
-		return theme;
+		if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+			return "dark";
+		}
+
+		if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+			return "light";
+		}
+
+		return "dark";
 	};
 
 	const theme = getTheme();
