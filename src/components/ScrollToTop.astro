@@ -14,9 +14,8 @@ import { ArrowUp } from "@lucide/astro";
 <script>
 	import { debounce } from "../utils/utils.js";
 
-	const scrollToTopButton = document.querySelector("#scroll-to-top");
-
-	const toggleScrollToTopButton = () => {
+	function toggleScrollToTopButton() {
+		const scrollToTopButton = document.querySelector("#scroll-to-top");
 		const scrollY = window.scrollY;
 
 		if (scrollY > 60) {
@@ -28,7 +27,7 @@ import { ArrowUp } from "@lucide/astro";
 			scrollToTopButton.classList.add("hidden");
 			scrollToTopButton.classList.remove("grid");
 		}
-	};
+	}
 
 	const scrollToTop = () => {
 		window.scrollTo({
@@ -37,10 +36,10 @@ import { ArrowUp } from "@lucide/astro";
 		});
 	};
 
-	let timer: NodeJS.Timeout | null = null;
-
 	document.addEventListener("astro:page-load", () => {
-		scrollToTopButton.addEventListener("click", scrollToTop);
+		let timer: NodeJS.Timeout | null = null;
+
+		document.querySelector("#scroll-to-top").addEventListener("click", scrollToTop);
 
 		window.addEventListener(
 			"scroll",
