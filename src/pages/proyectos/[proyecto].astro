@@ -35,6 +35,7 @@ const { id, title, description, url, images, badges } = project;
 						<Image
 							class="mb-8 rounded object-cover w-full"
 							transition:name={`project-image-${id}-${index}`}
+							transition:persist
 							src={image}
 							alt={`Sitio web ${title}`}
 							height={320}
