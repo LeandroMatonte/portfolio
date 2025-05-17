@@ -2,32 +2,14 @@
 import ContactLinks from "./ContactLinks.astro";
 ---
 
-<footer>
-	<div class="footer-container">
-		<p>Gracias por tu visita. <br />Si te interesa mi trabajo <span class="text-accent">contactame!</span></p>
-
-		<div class="contact-container">
-			<ContactLinks showLabels={false} />
+<footer class="my-16 p-4 text-pretty" transition:name="footer">
+	<div class="max-w-[var(--max-width)] mx-auto text-center">
+		<p>
+			Gracias por tu visita. <br />Si te interesa mi trabajo <span class="text-[var(--color-accent)] font-bold"
+				>contactame!</span>
+		</p>
+		<div class="flex justify-center gap-4 mt-4">
+			<ContactLinks />
 		</div>
 	</div>
 </footer>
-<style>
-	footer {
-		margin: 4rem 0;
-		padding: 1rem;
-		text-wrap: pretty;
-	}
-
-	.footer-container {
-		max-width: var(--max-width);
-		margin: 0 auto;
-		text-align: center;
-	}
-
-	.contact-container {
-		display: flex;
-		justify-content: center;
-		gap: 1rem;
-		margin-top: 2rem;
-	}
-</style>

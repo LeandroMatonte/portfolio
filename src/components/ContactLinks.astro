@@ -4,29 +4,31 @@ import Github from "../icons/Github.astro";
 import Linkedin from "../icons/Linkedin.astro";
 import { Mail } from "@lucide/astro";
 
-interface Props {
-	showLabels: boolean;
-}
-
-const { showLabels } = Astro.props;
+const contactLinks = [
+	{
+		url: "https://www.linkedin.com/in/leandro-matonte/",
+		label: "Ver perfil de LinkedIn",
+		icon: Linkedin,
+	},
+	{
+		url: "https://github.com/LeandroMatonte",
+		label: "Ver perfil de Github",
+		icon: Github,
+	},
+	{
+		url: "mailto:leandromatonte99@gmail.com",
+		label: "Contactar por mail",
+		icon: Mail,
+	},
+];
 ---
 
-<div class="contact-container">
-	<Pill url="mailto:leandromatonte99@gmail.com" label="Contactar por mail" showLabel={showLabels}>
-		<Mail slot="pill-icon" />
-	</Pill>
-	<Pill url="https://www.linkedin.com/in/leandro-matonte/" label="Ver perfil de LinkedIn" showLabel={showLabels}>
-		<Linkedin slot="pill-icon" />
-	</Pill>
-	<Pill url="https://github.com/LeandroMatonte" label="Ver perfil de Github" showLabel={showLabels}>
-		<Github slot="pill-icon" />
-	</Pill>
-</div>
-
-<style>
-	.contact-container {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 1rem;
+<div class="relative flex flex-wrap gap-2 w-max">
+	{
+		contactLinks.map((link) => (
+			<Pill url={link.url} label={link.label}>
+				<link.icon slot="pill-icon" />
+			</Pill>
+		))
 	}
-</style>
+</div>

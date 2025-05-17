@@ -1,34 +1,14 @@
 ---
 interface Props {
-  name: string;
+	name: string;
 }
 
 const { name } = Astro.props;
 ---
 
-<div class="skill-item">
-  <slot name="skill-icon" />
-  <p>{name}</p>
+<div class="relative flex flex-col justify-center items-center gap-2">
+	<span class="text-4xl">
+		<slot name="skill-icon" />
+	</span>
+	<p class="text-sm text-[var(--color-muted)]">{name}</p>
 </div>
-
-<style>
-  .skill-item {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .skill-item :global(svg) {
-    font-size: 40px;
-  }
-
-  p {
-    transform: translate(0, .25rem);
-    font-size: 16px;
-    margin: 0;
-    color: var(--color-muted);
-  }
-</style>

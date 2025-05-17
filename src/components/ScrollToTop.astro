@@ -2,65 +2,31 @@
 import { ArrowUp } from "@lucide/astro";
 ---
 
-<button type="button" class="scroll-to-top"><ArrowUp /></button>
-<style>
-	.scroll-to-top {
-		display: none;
-		place-content: center;
-
-		padding: 0;
-		position: fixed;
-		bottom: 1rem;
-		right: 1rem;
-		width: 44px;
-		height: 44px;
-
-		background: var(--color-light);
-		color: var(--color-dark);
-		box-shadow: var(--shadow);
-		border: none;
-		outline: none;
-		border-radius: 50%;
-		cursor: pointer;
-
-		transition: all 0.2s ease-in-out;
-
-		display: none;
-		animation: appear 0.2s ease-in-out;
-	}
-
-	.scroll-to-top.show {
-		display: grid;
-	}
-
-	.scroll-to-top:hover {
-		transform: translate(0, -0.25rem);
-	}
-
-	@keyframes appear {
-		from {
-			opacity: 0;
-			bottom: 0;
-		}
-		to {
-			opacity: 1;
-			bottom: 1rem;
-		}
-	}
-</style>
+<button
+	type="button"
+	class="group hidden place-content-center p-0 fixed bottom-4 right-4 w-11 h-11 bg-light text-dark shadow rounded-full cursor-pointer transition-all duration-200 ease-in-out bg-[var(--color-light)] text-[var(--color-dark)]
+	animate-[appear_0.3s_ease-in-out]"
+	id="scroll-to-top"
+>
+	<ArrowUp class="group-hover:-translate-y-1 transition-transform duration-200 ease-in-out" />
+</button>
 
 <script>
-	const scrollToTopButton = document.querySelector(".scroll-to-top");
+	import { debounce } from "../utils/utils.js";
+
+	const scrollToTopButton = document.querySelector("#scroll-to-top");
 
 	const toggleScrollToTopButton = () => {
 		const scrollY = window.scrollY;
 
 		if (scrollY > 60) {
-			if (!scrollToTopButton.classList.contains("show")) {
-				scrollToTopButton.classList.add("show");
+			if (scrollToTopButton.classList.contains("hidden")) {
+				scrollToTopButton.classList.remove("hidden");
+				scrollToTopButton.classList.add("grid");
 			}
 		} else {
-			scrollToTopButton.classList.remove("show");
+			scrollToTopButton.classList.add("hidden");
+			scrollToTopButton.classList.remove("grid");
 		}
 	};
 
@@ -71,15 +37,17 @@ import { ArrowUp } from "@lucide/astro";
 		});
 	};
 
-	var timer;
+	let timer: NodeJS.Timeout | null = null;
 
-	window.addEventListener("DOMContentLoaded", () => {
-		window.addEventListener("scroll", () => {
-			clearTimeout(timer);
-			timer = setTimeout(function () {
-				toggleScrollToTopButton();
-			}, 200);
-		});
+	document.addEventListener("astro:page-load", () => {
 		scrollToTopButton.addEventListener("click", scrollToTop);
+
+		window.addEventListener(
+			"scroll",
+			debounce(() => {
+				clearTimeout(timer);
+				timer = setTimeout(toggleScrollToTopButton, 200);
+			}, 200)
+		);
 	});
 </script>

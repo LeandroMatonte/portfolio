@@ -1,54 +1,22 @@
 ---
 import Tooltip from "./Tooltip.astro";
 interface Props {
-  url: string;
-  label: string;
-  showLabel: boolean;
+	url: string;
+	label: string;
 }
 
-const { url, label, showLabel } = Astro.props;
+const { url, label } = Astro.props;
 ---
 
 <Tooltip content={label}>
-  <a slot="tooltip-objective" class="pill" href={url} target="_blank" aria-label={label}>
-    <slot name="pill-icon" />
-    {showLabel ? <label>{label}</label> : null}
-  </a>
-  <p class="tooltip-content" slot="tooltip-content">{label}</p>
+	<a
+		slot="tooltip-objective"
+		class="grid place-content-center cursor-pointer p-3 rounded-full hover:bg-(--color-accent-muted) transition-colors duration-200 ease-in-out"
+		href={url}
+		target="_blank"
+		aria-label={label}
+	>
+		<slot name="pill-icon" />
+	</a>
+	<p class="tooltip-content" slot="tooltip-content">{label}</p>
 </Tooltip>
-
-<style>
-  .pill {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 1rem;
-    font-size: 22px;
-    padding: 0.5rem 1rem;
-    border-radius: 2rem;
-    background-color: var(--color-accent);
-    color: var(--white);
-    text-decoration: none;
-    border: 2px solid var(--color-accent);
-    transition: all 0.2s ease-in-out;
-
-    & label {
-      font-size: 16px;
-    }
-  }
-
-  .pill:hover {
-    background-color: var(--white);
-    color: var(--color-accent);
-  }
-
-  label {
-    font-weight: 600;
-  }
-
-  @media (min-width: 768px) {
-    label {
-      display: none;
-    }
-  }
-</style>

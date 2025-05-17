@@ -2,25 +2,17 @@
 import { Moon, Sun } from "@lucide/astro";
 ---
 
-<button type="button" id="themeToggle" aria-label="Botón para cambiar el tema de la página">
+<button
+	type="button"
+	id="themeToggle"
+	class="grid place-content-center cursor-pointer p-2 rounded-full hover:bg-(--color-accent-muted) transition-colors duration-200 ease-in-out"
+	aria-label="Botón para cambiar el tema de la página"
+>
 	<Moon class="moon-icon" />
 	<Sun class="sun-icon" />
 </button>
 
 <style>
-	#themeToggle {
-		display: grid;
-		place-content: center;
-		font-size: 22px;
-		padding: 0.5rem;
-		border: 2px solid transparent;
-		color: var(--color-light);
-		border-radius: 50%;
-		cursor: pointer;
-		transition: all 0.2s ease-in-out;
-		background: none;
-	}
-
 	html .moon-icon,
 	html.dark .sun-icon {
 		display: block;

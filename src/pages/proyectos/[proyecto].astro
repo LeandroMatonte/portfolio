@@ -1,0 +1,70 @@
+---
+import ScrollToTop from "../../components/ScrollToTop.astro";
+import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import { ExternalLink } from "@lucide/astro";
+import Badge from "../../components/Badge.astro";
+
+import { projects } from "../../data/projects";
+
+export function getStaticPaths() {
+	return projects.map((project) => ({
+		params: {
+			proyecto: project.id,
+		},
+	}));
+}
+
+const { proyecto } = Astro.params;
+
+const project = projects.find((project) => project.id === proyecto);
+
+if (!project) {
+	throw new Error(`El proyecto "${proyecto}" no existe.`);
+}
+
+const { id, title, description, url, images, badges } = project;
+---
+
+<Layout title="Portfolio de Leandro - Desarrollador Web con más de 4 años de experiencia">
+	<main class="mx-auto w-full max-w-[var(--max-width)] p-4">
+		<article class="grid grid-cols-1 sm:grid-cols-[1fr_300px] gap-8">
+			<div>
+				{
+					images.map((image, index) => (
+						<Image
+							class="mb-8 rounded object-cover w-full"
+							transition:name={`project-image-${id}-${index}`}
+							src={image}
+							alt={`Sitio web ${title}`}
+							height={320}
+							densities={[0.5, 1, 2]}
+							quality={80}
+							loading="eager"
+						/>
+					))
+				}
+			</div>
+			<aside class="relative">
+				<div class="sticky top-26">
+					<h2 class="text-xl font-bold mb-4" transition:name={`project-title-${id}`}>{title}</h2>
+					<div class="flex gap-2 mb-2">
+						{badges.map((badge, index) => <Badge title={badge.title} id={`${index}-${id}`} />)}
+					</div>
+					<p class="font-light text-lg text-pretty">{description}</p>
+					<a
+						class="font-medium px-4 py-2 hover:bg-(--color-accent-muted) rounded text-(--color-white) hover:text-(--color-accent) inline-flex items-center gap-2 mt-4"
+						href={url}
+						aria-label={`Ver proyecto ${title}`}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<ExternalLink class="w-4 h-4" />
+						visitar el sitio
+					</a>
+				</div>
+			</aside>
+		</article>
+		<ScrollToTop />
+	</main>
+</Layout>

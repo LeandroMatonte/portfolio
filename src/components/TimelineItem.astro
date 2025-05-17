@@ -12,83 +12,25 @@ const { item } = Astro.props;
 const { active, title, description, date } = item;
 ---
 
-<li class:list={["timeline-item", { active }]}>
-	<h2>{title}</h2>
-	<p>{description}</p>
-	{date ? <small>{date}</small> : null}
+<li
+	class:list={[
+		"relative ml-4 pl-8 not-last:pb-8",
+		"not-last:before:absolute not-last:before:rounded-full not-last:before:bg-[var(--color-light)] not-last:before:opacity-40 not-last:before:top-2 not-last:before:left-0 not-last:before:bottom-0 not-last:before:w-0.5 not-last:before:h-full",
+	]}
+>
+	<span
+		class:list={[
+			"absolute w-4 h-4 rounded-full top-0 -left-[7px]",
+			active ? "bg-[var(--color-accent-light)]" : "bg-[var(--color-light)]",
+		]}
+	>
+		{
+			active ? (
+				<span class="absolute animate-pulse top-0 left-0 w-full h-full rounded-full bg-[var(--color-accent-light)] filter drop-shadow-[0_0_4px_var(--color-accent-light),0_0_8px_var(--color-accent-light),0_0_16px_var(--color-accent-light)]" />
+			) : null
+		}
+	</span>
+	<h2 class="font-medium leading-none mb-2">{title}</h2>
+	<p class="mb-0 font-light">{description}</p>
+	{date ? <small class="block font-light text-[var(--color-muted)]">{date}</small> : null}
 </li>
-
-<style>
-	.timeline-item {
-		position: relative;
-		margin-left: 1rem;
-		padding-left: 2rem;
-	}
-
-	.timeline-item:not(:last-child) {
-		padding-bottom: 2rem;
-	}
-
-	.timeline-item h2 {
-		margin-bottom: 0.25em;
-	}
-
-	.timeline-item p {
-		margin: 0;
-		margin-bottom: 0.25em;
-	}
-
-	.timeline-item small {
-		display: block;
-		margin: 0;
-		margin-bottom: 0.25em;
-	}
-
-	.timeline-item:not(:last-child):before {
-		content: "";
-		position: absolute;
-		left: 0;
-		top: 0;
-		bottom: 0;
-		width: 2px;
-		background: var(--color-light);
-		opacity: 0.4;
-	}
-
-	.timeline-item:after {
-		content: "";
-		position: absolute;
-		left: -6px;
-		top: 0;
-		width: 14px;
-		height: 14px;
-		border-radius: 50%;
-		background: var(--color-light);
-		-webkit-transform: translate3d(0, 0, 0);
-	}
-
-	.timeline-item.active::after {
-		width: 18px;
-		height: 18px;
-		left: -8px;
-		top: 0;
-		background: var(--color-accent-light);
-
-		filter: drop-shadow(0px 0px 8px var(--color-accent-light)) drop-shadow(0px 0px 16px var(--color-accent-light))
-			drop-shadow(0px 0px 32px var(--color-accent-light));
-		animation: glow 1.4s ease-in-out;
-	}
-
-	small {
-		color: var(--color-muted);
-	}
-
-	@keyframes glow {
-		0% {
-			box-shadow: 0 0 0 0 var(--color-accent-light);
-		}
-		100% {
-			box-shadow: 0 0 6px 16px transparent;
-		}
-	}
-</style>

@@ -1,52 +1,22 @@
 ---
 import Project from "./Project.astro";
-
-import premierImage from "../img/empaques-premier.webp";
-import cxrtoImage from "../img/cxrto.webp";
+import { projects } from "../data/projects.js";
 ---
 
-<section>
-	<h2>Proyectos</h2>
-	<div class="projects-container">
-		<Project
-			title="Empaques Premier"
-			description="Sitio web de una empresa de empaques flexibles, en este caso utilicé Astro para el frontend, se rediseñó la página por completo."
-			image={premierImage}
-			url="https://empaquespremier.com"
-			badges={[
-				{
-					title: "Astro",
-				},
-			]}
-		/>
-		<Project
-			title="Cxrto"
-			description="Herramienta de acortado de URLs, utilicé NextJS para el frontend, Supabase para el backend y Vercel como hosting."
-			image={cxrtoImage}
-			url="https://cxrto.vercel.app"
-			badges={[
-				{
-					title: "NextJS",
-				},
-				{
-					title: "Supabase",
-				},
-			]}
-		/>
+<section class="mb-20">
+	<h2 class="text-xl font-bold mb-4">Proyectos</h2>
+	<div class="grid gap-8 sm:grid-cols-2">
+		{
+			projects.map((project) => (
+				<Project
+					key={project.title}
+					id={project.id}
+					title={project.title}
+					images={project.images}
+					url={project.url}
+					badges={project.badges}
+				/>
+			))
+		}
 	</div>
 </section>
-<style>
-	.projects-container {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 2rem;
-		padding-bottom: 2rem;
-		margin-bottom: 2rem;
-	}
-
-	@media screen and (min-width: 480px) {
-		.projects-container {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
-</style>

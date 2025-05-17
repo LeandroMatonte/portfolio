@@ -1,12 +1,12 @@
 ---
 interface Props {
-  title: string;
-  list: Array<{
-    active: boolean;
-    title: string;
-    description: string;
-    date?: string;
-  }>;
+	title: string;
+	list: Array<{
+		active: boolean;
+		title: string;
+		description: string;
+		date?: string;
+	}>;
 }
 
 const { title, list } = Astro.props;
@@ -14,21 +14,9 @@ const { title, list } = Astro.props;
 import TimelineItem from "./TimelineItem.astro";
 ---
 
-<article>
-  <h2>{title}</h2>
-  <ul class="timeline">
-    {list.map((listItem) => <TimelineItem item={listItem} />)}
-  </ul>
+<article class="mb-20">
+	<h2 class="text-xl font-bold mb-8">{title}</h2>
+	<ul class="">
+		{list.map((listItem) => <TimelineItem item={listItem} />)}
+	</ul>
 </article>
-<style>
-  article {
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
-  }
-  
-  .timeline {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-</style>

@@ -50,7 +50,7 @@ const schooling = [
 ---
 
 <Layout title="Portfolio de Leandro - Desarrollador Web con más de 4 años de experiencia">
-	<main>
+	<main class="m-auto w-full max-w-[var(--max-width)] p-4">
 		<Header />
 		<Timeline title="Experiencia" list={experience} />
 		<Projects />
@@ -59,13 +59,3 @@ const schooling = [
 		<ScrollToTop />
 	</main>
 </Layout>
-
-<style>
-	main {
-		margin: auto;
-		width: 100%;
-		max-width: var(--max-width);
-		padding: calc(1rem + var(--nav-height)) 1rem 1rem 1rem;
-		box-sizing: border-box;
-	}
-</style>
