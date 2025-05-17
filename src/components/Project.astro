@@ -14,7 +14,6 @@ const { id, title, images, badges } = Astro.props;
 		densities={[0.5, 1, 2]}
 		quality={80}
 		transition:name={`project-image-${id}-0`}
-		transition:persist
 		loading="eager"
 	/>
 	<h2 class="text-xl font-medium mb-2" transition:name={`project-title-${id}`}>
