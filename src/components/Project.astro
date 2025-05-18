@@ -8,15 +8,14 @@ const { id, title, images, badges } = Astro.props;
 	<Image
 		class="rounded mb-2"
 		src={images[0]}
-		alt={title}
-		width={720}
-		height={260}
+		alt={`Sitio web ${title}`}
+		height={320}
 		densities={[0.5, 1, 2]}
 		quality={80}
 		transition:name={`project-image-${id}-0`}
 		loading="eager"
 	/>
-	<h2 class="text-xl font-medium mb-2" transition:name={`project-title-${id}`}>
+	<h2 class="text-xl font-medium mb-2 text-(--color-accent)" transition:name={`project-title-${id}`}>
 		{title}
 	</h2>
 	<div class="flex gap-2">

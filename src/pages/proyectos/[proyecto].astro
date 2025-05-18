@@ -29,23 +29,23 @@ const { id, title, description, url, images, badges } = project;
 <Layout title="Portfolio de Leandro - Desarrollador Web con más de 4 años de experiencia">
 	<main class="mx-auto w-full max-w-[var(--max-width)] p-4">
 		<article class="grid grid-cols-1 sm:grid-cols-[1fr_300px] gap-8">
-			<div>
+			<div class="order-2 sm:order-1">
 				{
 					images.map((image, index) => (
 						<Image
-							class="mb-8 rounded object-cover w-full"
-							transition:name={`project-image-${id}-${index}`}
+							class="mb-8 rounded w-full"
 							src={image}
 							alt={`Sitio web ${title}`}
 							height={320}
 							densities={[0.5, 1, 2]}
 							quality={80}
+							transition:name={`project-image-${id}-${index}`}
 							loading="eager"
 						/>
 					))
 				}
 			</div>
-			<aside class="relative">
+			<aside class="relative order-1 sm:order-2">
 				<div class="sticky top-26">
 					<h2 class="text-xl font-bold mb-4" transition:name={`project-title-${id}`}>{title}</h2>
 					<div class="flex gap-2 mb-2">
